@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="it" data-tone="light" data-bg="bolle" data-moving="true">
+<head>
+<meta charset="utf-8">
+<title>Chrome Mixer</title>
+<link rel="stylesheet" href="popup.css">
+</head>
+<body>
+<div class="popup">
+  <div class="wall"><i></i><i></i><i></i><i></i></div>
+
+  <header class="top glass">
+    <div class="brand">
+      <h1 id="title">Mixer<small id="count"></small></h1>
+      <div class="actions">
+        <button class="pill" id="muteAll" type="button" title="Muta tutte le schede, o riattivale">Muta tutte</button>
+        <button class="pill ico" id="openSettings" type="button" title="Impostazioni" aria-label="Impostazioni">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"/><circle cx="16" cy="7" r="2"/><circle cx="10" cy="17" r="2"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="row" id="masterRow">
+      <span class="label">Generale</span>
+      <div class="slider"><div class="rail"><div class="fill"></div></div><div class="notch"></div><input id="master" type="range" min="0" max="200" step="5" value="100" aria-label="Volume generale"></div>
+      <span class="pct" id="masterPct">100%</span>
+    </div>
+  </header>
+
+  <main class="list" id="list"></main>
+
+  <section class="settings" id="settings" hidden>
+    <div class="card glass">
+      <h2>Sfondo</h2>
+      <div class="bgs" id="bgs">
+        <button class="bg-opt" type="button" data-bg="bolle"><span class="sw bolle"></span>Bolle</button>
+        <button class="bg-opt" type="button" data-bg="colori"><span class="sw colori"></span>Colori</button>
+        <button class="bg-opt" type="button" data-bg="grigio"><span class="sw grigio"></span>Grigio</button>
+        <button class="bg-opt" type="button" data-bg="nero"><span class="sw nero"></span>Nero</button>
+        <button class="bg-opt" type="button" data-bg="personalizza"><span class="sw personalizza"></span>Tuo</button>
+      </div>
+      <div id="customBox" hidden>
+        <div class="colors">
+          <label>Base<input type="color" id="cBase"></label>
+          <label>Bolla 1<input type="color" id="c1"></label>
+          <label>Bolla 2<input type="color" id="c2"></label>
+          <label>Bolla 3<input type="color" id="c3"></label>
+        </div>
+        <label class="lbl" style="margin-top:10px"><span class="switch"><input type="checkbox" id="cMoving"><span></span></span>Bolle in movimento</label>
+      </div>
+    </div>
+
+    <div class="card glass">
+      <h2>Volumi salvati per sito</h2>
+      <div class="sites" id="sites"></div>
+    </div>
+
+    <div class="card glass">
+      <h2>Schermo intero</h2>
+      <label class="lbl"><span class="switch"><input type="checkbox" id="fsFix"><span></span></span>Schermo intero vero sulle schede regolate</label>
+      <p class="small-print">Mentre Mixer regola una scheda, Chrome tiene i video a schermo intero dentro la finestra. Con questa opzione Mixer mette a schermo intero anche la finestra. Chrome ti chiederà il permesso di leggere i siti: serve solo per accorgersi dello schermo intero.</p>
+    </div>
+
+    <div class="card glass">
+      <h2>Altro</h2>
+      <div class="btns">
+        <button class="pill wide" id="replayTour" type="button">Rivedi il tutorial</button>
+        <button class="pill wide" id="shortcuts" type="button">Cambia scorciatoie</button>
+        <button class="pill wide" id="releaseAll" type="button" title="Ferma tutte le catture: l'audio torna a Chrome com'era">Libera tutte</button>
+        <button class="pill wide" id="closeSettings" type="button">Torna al mixer</button>
+      </div>
+      <p class="small-print" id="version"></p>
+    </div>
+  </section>
+
+  <footer class="bottom glass">
+    <label title="Evita che il boost sopra il 100% distorca"><span class="switch"><input id="limiter" type="checkbox" checked><span></span></span>Limitatore</label>
+    <span><kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>M</kbd> muto &nbsp;<kbd>S</kbd> solo</span>
+  </footer>
+
+  <div class="tour" id="tour" hidden>
+    <div class="card glass" role="dialog" aria-modal="true" aria-labelledby="tourTitle">
+      <div class="dots" id="tourDots"></div>
+      <h2 id="tourTitle"></h2>
+      <div id="tourBody"></div>
+      <div class="nav">
+        <button class="pill" id="tourSkip" type="button">Salta</button>
+        <span class="step-count" id="tourCount"></span>
+        <div class="actions">
+          <button class="pill" id="tourBack" type="button">Indietro</button>
+          <button class="pill on" id="tourNext" type="button">Avanti</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module" src="popup.js"></script>
+</body>
+</html>

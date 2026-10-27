@@ -1,0 +1,36 @@
+{
+  "manifest_version": 3,
+  "name": "Chrome Mixer",
+  "short_name": "Mixer",
+  "version": "1.0.0",
+  "description": "Mixer audio per le schede: volume fino al 400% con limitatore, muto, solo, equalizzatore, bilanciamento, mono e volume salvato per sito.",
+  "minimum_chrome_version": "116",
+  "permissions": ["tabCapture", "offscreen", "tabs", "storage"],
+  "optional_permissions": ["scripting"],
+  "optional_host_permissions": ["<all_urls>"],
+  "background": { "service_worker": "src/background.js", "type": "module" },
+  "action": {
+    "default_title": "Chrome Mixer",
+    "default_popup": "src/popup.html",
+    "default_icon": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png" }
+  },
+  "icons": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "commands": {
+    "toggle-mute": {
+      "suggested_key": { "default": "Alt+Shift+M" },
+      "description": "Muta o riattiva la scheda attiva"
+    },
+    "toggle-solo": {
+      "suggested_key": { "default": "Alt+Shift+S" },
+      "description": "Solo sulla scheda attiva (muta le altre finché lo togli)"
+    },
+    "volume-up": {
+      "suggested_key": { "default": "Alt+Shift+Up" },
+      "description": "Alza il volume della scheda attiva del 10%"
+    },
+    "volume-down": {
+      "suggested_key": { "default": "Alt+Shift+Down" },
+      "description": "Abbassa il volume della scheda attiva del 10%"
+    }
+  }
+}
